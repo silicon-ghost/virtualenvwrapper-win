@@ -1,20 +1,28 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
 
-if defined PYTHONHOME (
+:TCC
+
+iff defined PYTHONHOME then
     set "PYHOME=%PYTHONHOME%"
-    goto MAIN
-)
-if defined VIRTUAL_ENV (
+elseiff defined VIRTUAL_ENV then
     set "PYHOME=%VIRTUAL_ENV%"
-    goto MAIN
-)
-for /f "usebackq tokens=*" %%a in (`python.exe -c "import sys;print(sys.exec_prefix)"`) do (
-    set "PYHOME=%%a"
-)
+else 
+    set PYHOME=%@EXECSTR[python.exe -c "import sys;print(sys.exec_prefix)"]
+endiff
+
+iff not defined PYHOME then
+   echo.
+   echo ERROR:  Unable to determine PYHOME from PYTHONHOME, VIRTUAL_ENV, or calling python.exe
+   goto END
+endiff
 
 :MAIN
 set "_LAST_DIR=%CD%"
-cd /d "%PYHOME%\Lib\site-packages"
+cdd "%PYHOME%\Lib\site-packages"
 set PYHOME=
 
 :END

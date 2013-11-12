@@ -1,4 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 
 if [%1]==[] goto USAGE
 goto SETPROJECTDIR
@@ -18,30 +24,26 @@ if not defined VIRTUALENVWRAPPER_PROJECT_FILENAME (
     set VIRTUALENVWRAPPER_PROJECT_FILENAME=.project
 )
 
-if not defined VIRTUAL_ENV (
+iff not defined VIRTUAL_ENV then
     echo.
     echo A virtualenv must be activated.
     goto USAGE    
-)
+endiff
 
 set "CALLINGPATH=%CD%"
-set "PROJDIR=%1"
-pushd "%PROJDIR%" 2>NUL
-if errorlevel 1 (
-    popd
-    mkdir "%PROJDIR%"
-    set "PROJDIR=%CALLINGPATH%\%PROJDIR%"
-) else (
-    set "PROJDIR=%CD%"
-    popd
-)
+set "PROJDIR=%@FULL[%1]"
+
+iff NOT DIREXIST "%PROJDIR%" then
+    mkdir /s "%PROJDIR%"
+else
+
 
 echo.
 echo.    "%PROJDIR%" is now the project directory for
 echo.    virtualenv "%VIRTUAL_ENV%"
 
-set /p ="%PROJDIR%">"%VIRTUAL_ENV%\%VIRTUALENVWRAPPER_PROJECT_FILENAME%" <NUL
-call add2virtualenv.bat "%PROJDIR%"
+echo "%PROJDIR%" > "%VIRTUAL_ENV%\%VIRTUALENVWRAPPER_PROJECT_FILENAME%"
+call add2virtualenv.btm "%PROJDIR%"
 
 :END
 set CALLINGPATH=

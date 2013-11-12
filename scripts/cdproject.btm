@@ -1,4 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 
 goto :CHANGEDIR
 
@@ -9,7 +15,7 @@ goto END
 
 :CHANGEDIR
 if not defined VIRTUAL_ENV (
-   echo .
+   echo.
    echo a virtualenv must be activated
    goto USAGE
 )
@@ -26,7 +32,7 @@ if not EXIST "%VIRTUAL_ENV%\%VIRTUALENVWRAPPER_PROJECT_FILENAME%" (
 
 set "_LAST_DIR=%CD%"
 set /p ENVPRJDIR=<"%VIRTUAL_ENV%\%VIRTUALENVWRAPPER_PROJECT_FILENAME%"
-cd /d "%ENVPRJDIR%"
+cdd "%ENVPRJDIR%"
 set ENVPRJDIR=
 
 :END

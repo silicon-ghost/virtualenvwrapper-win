@@ -1,5 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
 
+:TCC
 if [%1]==[] goto USAGE
 goto ADD2
 
@@ -24,17 +29,11 @@ for /f "usebackq tokens=*" %%a in (`python.exe -c "import sys;print(sys.exec_pre
 )
 
 :MAIN
-set "PROJDIR=%1"
+set "PROJDIR=%@FULL[%1]"
 
-pushd "%PROJDIR%" 2>NUL
-if errorlevel 1 (
-    popd
-    mkdir "%PROJDIR%"
-    set "PROJDIR=%CD%\%PROJDIR%"
-) else (
-    set "PROJDIR=%CD%"
-    popd
-)
+iff NOT DIREXIST "%PROJDIR%" then
+    mkdir /s "%PROJDIR%"
+else
 
 REM Note that %1 is already quoted by setprojdir or by the prompt
 echo %PROJDIR%>>"%PYHOME%\Lib\site-packages\virtualenv_path_extensions.pth"

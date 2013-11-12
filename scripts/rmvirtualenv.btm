@@ -1,4 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 
 if [%1]==[] goto USAGE
 goto RMVIRTUALENV
@@ -13,40 +19,30 @@ if not defined WORKON_HOME (
     set "WORKON_HOME=%USERPROFILE%\Envs"
 )
 
-if defined VIRTUAL_ENV (
-    if [%VIRTUAL_ENV%]==[%WORKON_HOME%\%1] call "%WORKON_HOME%\%1\Scripts\deactivate.bat"
-)
+iff defined VIRTUAL_ENV then
+    iff [%VIRTUAL_ENV%]==[%WORKON_HOME%\%1] then
+        call "%WORKON_HOME%\%1\Scripts\deactivate.bat"
+    endiff
+endiff
 
 if not defined VIRTUALENVWRAPPER_PROJECT_FILENAME (
     set VIRTUALENVWRAPPER_PROJECT_FILENAME=.project
 )
 
-pushd "%WORKON_HOME%" 2>NUL && popd
-if errorlevel 1 (
+if not direxist "%WORKON_HOME%" (
     mkdir "%WORKON_HOME%"
 )
 
-pushd "%WORKON_HOME%\%1" 2>NUL && popd
-if errorlevel 1 (
+iff not direxist "%WORKON_HOME%\%1" then
     echo.
     echo.    virtualenv "%1" does not exist
     goto END
-)
+endiff
 
-set "_CURRDIR=%CD%"
-cd /d "%WORKON_HOME%\%1"
-if exist "%WORKON_HOME%\%1\%VIRTUALENVWRAPPER_PROJECT_FILENAME%" (
-    del "%WORKON_HOME%\%1\%VIRTUALENVWRAPPER_PROJECT_FILENAME%"
-)
+rmdir /s /q "%WORKON_HOME%\%1"
 
-call folder_delete.bat *
-cd ..
-rmdir "%1"
-cd /d "%_CURRDIR%"
 echo.
 echo.    Deleted %WORKON_HOME%\%1 
 echo.
-
-set _CURRDIR=
 
 :END

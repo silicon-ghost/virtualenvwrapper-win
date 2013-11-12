@@ -1,4 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 
 if not defined WORKON_HOME (
     set "WORKON_HOME=%USERPROFILE%\Envs"
@@ -23,22 +29,20 @@ if defined VIRTUAL_ENV (
     call "%VIRTUAL_ENV%\Scripts\deactivate.bat"
 )
 
-pushd "%WORKON_HOME%" 2>NUL && popd
-if errorlevel 1 (
+if not direxist "%WORKON_HOME%" (
     mkdir "%WORKON_HOME%"
 )
 
-pushd "%WORKON_HOME%\%1" 2>NUL && popd
-if errorlevel 1 (
+iff not direxist "%WORKON_HOME%\%1" then
     echo.
     echo.    virtualenv "%1" does not exist. Create it with "mkvirtualenv %1"
     goto END
-)
+endiff
 
 call "%WORKON_HOME%\%1\Scripts\activate.bat"
 
 if exist "%WORKON_HOME%\%1\%VIRTUALENVWRAPPER_PROJECT_FILENAME%" (
-    call cdproject.bat
+    call cdproject.btm
 )
 
 :END

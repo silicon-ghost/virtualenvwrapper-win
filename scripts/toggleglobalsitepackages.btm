@@ -1,4 +1,10 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 
 :MAIN
 if not defined VIRTUAL_ENV (
@@ -7,17 +13,20 @@ if not defined VIRTUAL_ENV (
     goto END
 )
 
+setlocal
+
 set "file=%VIRTUAL_ENV%\Lib\no-global-site-packages.txt"
-if exist "%file%" (
+iff exist "%file%" then
     del "%file%"
     echo.
     echo.    Enabled global site-packages
     goto END
-) else (
+else
     type nul >>"%file%"
     echo.
     echo.    Disabled global site-packages
-)
-set file=
+endiff
+
+endlocal 
 
 :END

@@ -1,5 +1,13 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
+
+:TCC
 SETLOCAL 
 set "P2=.;%PATH%"
 for %%e in (%PATHEXT%) do @for %%i in (%1%%e) do @if NOT "%%~$P2:i"=="" echo %%~$P2:i
 for %%i in (%1) do @if NOT "%%~$P2:i"=="" echo %%~$P2:i
+
+:END

@@ -1,6 +1,13 @@
 @echo off
+if "%@eval[2 + 2]%" == "4" goto TCC
+echo.
+echo.  This script requires Take Command/TCC to run.
+goto END
 
+:TCC
 if defined _LAST_DIR (
-    cd /d "%_LAST_DIR%"
+    cdd "%_LAST_DIR%"
     set _LAST_DIR=
 )
+
+:END
