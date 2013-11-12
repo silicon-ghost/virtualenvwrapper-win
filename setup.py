@@ -3,13 +3,13 @@
 from distribute_setup import use_setuptools
 use_setuptools()
 
-PROJECT = 'virtualenvwrapper-win'
-AUTHOR = 'David Marble'
-EMAIL = 'davidmarble@gmail.com'
-DESCRIPTION = ('Port of Doug Hellmann\'s virtualenvwrapper '
-               'to Windows batch scripts')
-VERSION = '1.1.5'
-PROJECT_URL = 'https://github.com/davidmarble/%s/' % (PROJECT)
+PROJECT = 'virtualenvwrapper-wintcc'
+AUTHOR = 'Matthew Zaleski'
+EMAIL = 'silicon_ghost25@zaleski.net'
+DESCRIPTION = ("Port of David Marble's virtualenvwrapper-win "
+               "Windows batch scripts to JPSoft's Take Command/TCC (tested with 12.x)") 
+VERSION = '0.9'
+PROJECT_URL = 'https://github.com/silicon_ghost/%s/' % (PROJECT)
 scripts_loc = 'scripts/'
 scripts = [
     'add2virtualenv.bat',
@@ -80,23 +80,23 @@ setup(
     author_email=EMAIL,
     url=PROJECT_URL,
     license="BSD 3-clause",
-    keywords="setuptools deployment installation distutils virtualenv virtualenvwrapper",
+    keywords="setuptools deployment installation distutils virtualenv virtualenvwrapper virtualenvwrapper-win",
 
     platforms=['WIN32', 'WIN64',],
 
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 2 - Pre-Alpha',
         'Environment :: Win32 (MS Windows)',
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.4',
-        'Programming Language :: Python :: 2.5',
-        'Programming Language :: Python :: 2.6',
+        #'Programming Language :: Python :: 2.4',
+        #'Programming Language :: Python :: 2.5',
+        #'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.0',
-        'Programming Language :: Python :: 3.1',
+        #'Programming Language :: Python :: 3.0',
+        #'Programming Language :: Python :: 3.1',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Intended Audience :: Developers',
@@ -104,7 +104,7 @@ setup(
 
     scripts=[scripts_loc + script for script in scripts],
 
-    install_requires=['virtualenv==1.9.1',],
+    install_requires=['virtualenv>=1.9.1',],
     
     # extras
     # pywin==0.2
