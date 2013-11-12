@@ -12,20 +12,19 @@ VERSION = '0.9'
 PROJECT_URL = 'https://github.com/silicon_ghost/%s/' % (PROJECT)
 scripts_loc = 'scripts/'
 scripts = [
-    'add2virtualenv.bat',
-    'cd-.bat',
-    'cdproject.bat',
-    'cdsitepackages.bat',
-    'cdvirtualenv.bat',
-    'folder_delete.bat',
-    'lssitepackages.bat',
-    'lsvirtualenv.bat',
-    'mkvirtualenv.bat',
-    'rmvirtualenv.bat',
-    'setprojectdir.bat',
-    'toggleglobalsitepackages.bat',
-    'whereis.bat',
-    'workon.bat',
+    'add2virtualenv.btm',
+    'cd-.btm',
+    'cdproject.btm',
+    'cdsitepackages.btm',
+    'cdvirtualenv.btm',
+    'lssitepackages.btm',
+    'lsvirtualenv.btm',
+    'mkvirtualenv.btm',
+    'rmvirtualenv.btm',
+    'setprojectdir.btm',
+    'toggleglobalsitepackages.btm',
+    'whereis.btm',
+    'workon.btm',
 ]
 
 import os
@@ -79,7 +78,7 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=PROJECT_URL,
-    license="BSD 3-clause",
+    license="MIT License",
     keywords="setuptools deployment installation distutils virtualenv virtualenvwrapper virtualenvwrapper-win",
 
     platforms=['WIN32', 'WIN64',],
@@ -87,7 +86,7 @@ setup(
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Environment :: Win32 (MS Windows)',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         #'Programming Language :: Python :: 2.4',
