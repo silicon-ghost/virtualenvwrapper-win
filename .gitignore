@@ -3,3 +3,4 @@
 build
 dist
 virtualenvwrapper_win.egg-info
+/virtualenvwrapper_wintcc.egg-info/
