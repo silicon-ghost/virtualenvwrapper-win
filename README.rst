@@ -1,26 +1,31 @@
 virtualenvwrapper-wintcc
 ========================
 
-This is a port of David Marble's `virtualenvwrapper-win <https://github.com/davidmarble/virtualenvwrapper-win/>`_
-to JPSoft's Take Command/TCC batch scripts.
+This is a port of David Marble's `virtualenvwrapper-win`_ to JPSoft's Take Command/TCC batch scripts.
 
-David Marble's virtualenvwrapper-win is a port of Doug Hellmann's 
-`virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ 
-to Windows batch scripts.  The idea behind virtualenvwrapper is to ease usage of 
-Ian Bicking's `virtualenv <http://pypi.python.org/pypi/virtualenv>`_, a tool 
-for creating isolated Python virtual environments, each with their own libraries 
-and site-packages.
+David Marble's virtualenvwrapper-win is a port of Doug Hellmann's `virtualenvwrapper`_ to Windows batch 
+scripts.  The idea behind virtualenvwrapper is to ease usage of Ian Bicking's `virtualenv`_, a tool for 
+creating isolated Python virtual environments, each with their own libraries and site-packages.
 
-These scripts should work on any version of Windows (Windows XP, Windows Vista, Windows 7).  I modified and tested these scripts against Take Command 12.11.  Although not tested, these scripts should be compatible with any newer version of Take Command as well as being compatible with the free-for-personal-use TCC/LE.  Check out `JP Software <http://jpsoft.com/>`_ for more info about their command prompt.
+These scripts should work on any version of Windows (Windows XP, Windows Vista, Windows 7).  I modified and 
+tested these scripts against Take Command 12.11.  Although not tested, these scripts should be compatible with 
+any newer version of Take Command as well as being compatible with the free-for-personal-use TCC/LE.  Check 
+out `JP Software <http://jpsoft.com/>`_ for more info about their command prompt.
 
-However, they only work in the **Take Command command prompt or TCC**. They **will not work in Powershell or the regular command prompt.**  There are other virtualenvwrapper projects out there for Powershell. 
+However, they only work in the **Take Command command prompt or TCC**. They will **not** work in Powershell or
+the regular command prompt. There are other virtualenvwrapper projects out there for Powershell.
+
+.. _virtualenvwrapper-win: https://github.com/davidmarble/virtualenvwrapper-win
+.. _virtualenvwrapper: http://www.doughellmann.com/projects/virtualenvwrapper
+.. _virtualenv: http://pypi.python.org/pypi/virtualenv
 
 
 Installation
 ------------
 **For Windows only with Take Command or TCC installed**
 
-Installed scripts are placed in the main directory of the active python installation. For example, if your default python is under C:\Python27\, these scripts will be in that same directory.
+Installed scripts are placed in the main directory of the active python installation. For example, if your
+default python is under ``C:\Python27``, these scripts will be in that same directory.
 
 To install, run one of the following::
 
@@ -35,11 +40,18 @@ To install, run one of the following::
     cd virtualenvwrapper-wintcc
     python setup.py install
 
-**Optional**: Add an environment variable WORKON_HOME to specify the path to store environments. By default, this is ``%USERPROFILE%\Envs``.
+**Optional**: Add an environment variable WORKON_HOME to specify the path to store environments. By default,
+this is ``%USERPROFILE%\Envs``.
 
 **Optional**: **pywin** python version switcher (not included)
 
-If you use several versions of python, you can switch between them using a separate project `pywin <https://github.com/davidmarble/pywin>`_. It's a lightweight python 2.5-3.3 launcher and switcher David Marble wrote for the Windows command line and MSYS/MINGW32. It's similar to the `py.exe launcher/switcher available in python 3.3 <http://docs.python.org/3/using/windows.html#launcher>`_, but written with basic Windows batch scripts and a shell script for MSYS/MINGW32 support. 
+If you use several versions of python, you can switch between them using a separate project `pywin`_.  It's a 
+lightweight python 2.5-3.3 launcher and switcher David Marble wrote for the Windows command line and 
+MSYS/MINGW32. It's similar to the `py.exe launcher/switcher available in python 3.3`_, but written with basic 
+Windows batch scripts and a shell script for MSYS/MINGW32 support.
+
+.. _pywin: https://github.com/davidmarble/pywin
+.. _py.exe launcher/switcher available in python 3.3: http://docs.python.org/3/using/windows.html#launcher
 
 Main Commands
 -------------
@@ -124,12 +136,13 @@ Convenience Commands
     ``whereis python.exe`` for an exact match.  This is similar to the
     ``which <file>`` command in TCC.
     
-Software Credits
-----------------
-virtualenvwrapper-win by David Marble
-Licensed Under: BSD 3-Clause License (Revised)
+Credits
+-------
+* virtualenvwrapper-win by David Marble.  This was my jumping off point for implementing a set of scripts
+  compatible with the Take Command/TCC shell.
 
-Acknowledgements
-----------------
-David Marble, Doug Hellmann, and Ian Bicking did all of the heavy lifting that makes this work.  My contribution is simply to allow these scripts to run well in the Take Command/TCC shell.
+* virtualenvwrapper by Doug Hellmann.  Without this package, using virtual environments was quite painful at
+  the command prompt.
+
+* virtualenv by Ian Bicking.  Virtual environments for Python!  What else is there to say?
 
